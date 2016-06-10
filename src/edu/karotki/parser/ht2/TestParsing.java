@@ -3,6 +3,8 @@ package edu.karotki.parser.ht2;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import java.io.File;
 
@@ -15,14 +17,15 @@ public class TestParsing {
 			Document doc = Builder.parse(new File("menu.xml"));
 			doc.getDocumentElement().normalize();
 
-			System.out.println("Меню ресторана жемчужинка");
+			System.out.println("РњРµРЅСЋ СЂРµСЃС‚РѕСЂР°РЅР° Р–РµРјС‡СѓР¶РёРЅРєР°");
 			System.out.println("-------------------------");
 
 			NodeList mList = doc.getElementsByTagName("header").item(0).getChildNodes();
 			NodeList cList = doc.getElementsByTagName("category");
 			NodeList iList;
 			for (int l = 0; l < cList.getLength(); l++) {
-				System.out.println(cList.item(l).getAttributes().item(1).getNodeValue());
+				NamedNodeMap attribute=cList.item(l).getAttributes();
+				System.out.println(attribute.item(1).getNodeValue());
 				System.out.println("-------------------------");
 				for (int i = 0; i < mList.getLength(); i++) {
 					System.out.println(mList.item(i).getTextContent().trim() + "  ");
@@ -31,10 +34,12 @@ public class TestParsing {
 				System.out.println("-------------------------");
 				iList = cList.item(l).getChildNodes();
 				for (int i = 0; i < iList.getLength(); i++) {
-					for (int j = 0; j < iList.item(i).getChildNodes().getLength(); j++) {
-						for (int k = 0; k < iList.item(i).getChildNodes().item(j).getChildNodes().getLength(); k++) {
-							System.out.println(iList.item(i).getChildNodes().item(j).getChildNodes().item(k)
-									.getTextContent().trim() + "   ");
+					Node node1=iList.item(i);
+					for (int j = 0; j < node1.getChildNodes().getLength(); j++) {
+						Node node2=node1.getChildNodes().item(j);
+						for (int k = 0; k < node2.getChildNodes().getLength(); k++) {
+							Node node3=node2.getChildNodes().item(k);
+							System.out.println(node3.getTextContent().trim() + "   ");
 						}
 					}
 					System.out.println("***************************");
