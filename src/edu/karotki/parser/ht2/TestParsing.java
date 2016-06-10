@@ -24,7 +24,7 @@ public class TestParsing {
 			NodeList cList = doc.getElementsByTagName("category");
 			NodeList iList;
 			for (int l = 0; l < cList.getLength(); l++) {
-				NamedNodeMap attribute=cList.item(l).getAttributes();
+				NamedNodeMap attribute = cList.item(l).getAttributes();
 				System.out.println(attribute.item(1).getNodeValue());
 				System.out.println("-------------------------");
 				for (int i = 0; i < mList.getLength(); i++) {
@@ -34,11 +34,11 @@ public class TestParsing {
 				System.out.println("-------------------------");
 				iList = cList.item(l).getChildNodes();
 				for (int i = 0; i < iList.getLength(); i++) {
-					Node node1=iList.item(i);
+					Node node1 = iList.item(i);
 					for (int j = 0; j < node1.getChildNodes().getLength(); j++) {
-						Node node2=node1.getChildNodes().item(j);
+						Node node2 = node1.getChildNodes().item(j);
 						for (int k = 0; k < node2.getChildNodes().getLength(); k++) {
-							Node node3=node2.getChildNodes().item(k);
+							Node node3 = node2.getChildNodes().item(k);
 							System.out.println(node3.getTextContent().trim() + "   ");
 						}
 					}
